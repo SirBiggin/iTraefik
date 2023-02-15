@@ -24,7 +24,7 @@ global:
 
 providers:
   file:
-    directory: /etc/traefik/config
+    directory: /etc/itraefik/config
     watch: true
 
 experimental:
