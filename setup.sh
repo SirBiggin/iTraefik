@@ -13,7 +13,7 @@ sudo apt-get install \
 	git
 
 cd /etc/
-git clone https://github.com/SirBiggin/traefik
+git clone https://github.com/SirBiggin/iTraefik
 cd /etc/traefik/
 sudo mkdir -p /etc/traefik/certs
 sudo touch /etc/traefik/certs/acme.json
