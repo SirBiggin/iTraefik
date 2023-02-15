@@ -1,0 +1,29 @@
+---
+http:
+  routers:
+    to-idrac1-local:
+      rule: "Host(`idrac1`)"
+      service: idrac1
+    
+    to-idrac1-local2:
+      rule: "Host(`idrac1.coitus.local`)"
+      service: idrac1
+      
+  middlewares:
+    my-torblock:
+      plugin:
+        torblock:
+          AddressListURL: https://check.torproject.org/exit-addresses
+          Enabled: "true"
+          UpdateInterval: "3600"
+          
+    my-plugin-log4shell:
+      plugin:
+        plugin-log4shell:
+          errorCode: "200"
+        
+  services:
+    idrac1:
+      loadBalancer:
+        servers:
+          - url: http://10.0.0.13:5800
