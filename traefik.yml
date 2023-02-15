@@ -1,0 +1,38 @@
+---
+entryPoints:
+  web:
+    address: :80
+
+  websecure:
+    address: :443
+    
+api:
+  insecure: true
+  dashboard: true
+    
+global:
+  checkNewVersion: true
+  sendAnonymousUsage: true
+    
+#certificatesResolvers:
+#  letsencrypt:
+#    acme:
+#      email: "Eric.G.Greene@hotmail.com"
+#      storage: /etc/traefik/certs/acme.json
+#      httpChallenge:
+#        entryPoint: web
+
+providers:
+  file:
+    directory: /etc/traefik/config
+    watch: true
+
+experimental:
+  plugins:
+    torblock:
+      moduleName: "github.com/jpxd/torblock"
+      version: "v0.1.1"
+      
+    plugin-log4shell:
+      moduleName: "github.com/traefik/plugin-log4shell"
+      version: "v0.1.2"
