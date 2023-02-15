@@ -4,7 +4,7 @@ rm -r /etc/itraefik
 
 cd /etc/
 git clone https://github.com/SirBiggin/itraefik
-cd /etc/traefik/
+cd /etc/itraefik/
 sudo mkdir -p /etc/itraefik/certs
 sudo touch /etc/itraefik/certs/acme.json
 sudo chmod 600 /etc/itraefik/certs/acme.json
