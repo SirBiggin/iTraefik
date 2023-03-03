@@ -1,0 +1,19 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          traefik
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Starts Traefik as Service
+### END INIT INFO
+# /etc/init.d/traefik
+# chkconfig: 345 99 10
+case "$1" in
+  start)
+    # Executes our script
+    sudo ./etc/etraefik/run.sh
+    ;;
+  *)
+    ;;
+esac

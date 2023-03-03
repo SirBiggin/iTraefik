@@ -1,0 +1,44 @@
+http:
+  middlewares:
+    default-headers:
+      headers:
+        frameDeny: true
+        sslRedirect: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+
+#    default-whitelist:
+#      ipWhiteList:
+#        sourceRange:
+#        - "10.0.0.0/24"
+#        - "192.168.0.0/16"
+#        - "172.0.0.0/8"
+
+    https-redirect:
+      redirectScheme:
+        scheme: https
+        permanent: true
+        
+    log4shell:
+      plugin:
+        log4shell:
+          errorCode: 200
+
+    torblock:
+      plugin:
+        torblock:
+          AddressListURL: https://check.torproject.org/exit-addresses
+          Enabled: "true"
+          UpdateInterval: "3600"
+          
+    secured:
+      chain:
+        middlewares:
+#        - default-whitelist
+        - default-headers
+        - log4shell
+        - torblock
+#        - https_redirect

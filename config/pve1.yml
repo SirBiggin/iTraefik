@@ -1,0 +1,28 @@
+---
+http:
+  routers:
+  
+    to-pve1-local:
+      entryPoints:
+       - websecure
+      rule: "Host(`pve1`)"
+      service: pve1
+      middlewares:
+       - secured@file
+       - https-redirect@file
+    
+    to-pve1-local2:
+      entryPoints:
+       - websecure
+      rule: "Host(`pve1.coitus.local`)"
+      service: pve1
+      middlewares:
+       - secured@file
+       - https-redirect@file
+
+
+  services:
+    pve1:
+      loadBalancer:
+        servers:
+          - url: http://10.0.0.5:8006
