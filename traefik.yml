@@ -1,10 +1,10 @@
 ---
 entryPoints:
   web:
-    address: :80
+    address: ":80"
 
   websecure:
-    address: :443
+    address: ":443"
     
 api:
   insecure: true
@@ -12,15 +12,33 @@ api:
     
 global:
   checkNewVersion: true
-  sendAnonymousUsage: true
-    
-#certificatesResolvers:
-#  letsencrypt:
-#    acme:
-#      email: "Eric.G.Greene@hotmail.com"
-#      storage: /etc/traefik/certs/acme.json
-#      httpChallenge:
-#        entryPoint: web
+  sendAnonymousUsage: false
+
+# (Optional) Log information
+#log:
+#  level: ERROR  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+#  format: common  # common, json, logfmt
+#  filePath: /var/log/traefik/traefik.log
+
+# (Optional) Accesslog
+#accesslog:
+#  format: common  # common, json, logfmt
+#  filePath: /var/log/traefik/access.log
+
+certificatesResolvers:
+  production:
+    acme:
+      email: Eric.G.Greene@hotmail.com
+      storage: /etc/itraefik/certs/prod-acme.json
+      httpChallenge:
+        entryPoint: web
+  staging:
+    acme:
+      email: Eric.G.Greene@hotmail.com
+      storage: /etc/itraefik/certs/non-prod-acme.json
+      caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+      httpChallenge:
+        entryPoint: web
 
 providers:
   file:
@@ -33,6 +51,6 @@ experimental:
       moduleName: "github.com/jpxd/torblock"
       version: "v0.1.1"
       
-    plugin-log4shell:
+    log4shell:
       moduleName: "github.com/traefik/plugin-log4shell"
       version: "v0.1.2"
